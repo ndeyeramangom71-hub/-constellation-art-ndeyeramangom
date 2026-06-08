@@ -2,74 +2,67 @@
 
 import turtle
 
-#--- Configuration de l'écran ---
-#creation de la fenetre
+# je crée la fenetre d'affichage
 ecran = turtle.Screen()
-#couleur de l'arriére plan 
-ecran.bgcolor("#1a1a2e")  # Bleu nuit
-#titre de la fenetre 
+ecran.bgcolor("#1a1a2e")
 ecran.title("Constellation : Le Cheval Complet")
 
-#creation de notre curseur 
+# je crée le stylo pour dessiner
 stylo = turtle.Turtle()
-#couleur du trait
-stylo.color("#68DDDD") 
- #l'epaisseur du trait à 4pixel
-stylo.pensize(4) 
- # Vitesse du stylo 
-stylo.speed(3)  
+stylo.color("#68DDDD")
+stylo.pensize(4)
+stylo.speed(3)
 
-#reation de la liste 
-
+# les coordonnées de chaque point du cheval
 cheval_complet = [
-    # -- Le bout du nez (point de départ) --
+    # le museau
     (100, -20),
 
-    # -- Mâchoire et poitrail --
+    # la machoire et le poitrail
     (108, -28), (105, -38), (90, -42), (60, -30), (35, -45), (10, -100),
 
-    # -- Patte avant --
+    # patte avant
     (15, -150), (20, -200), (10, -210), (0, -210), (5, -150),
 
-    # -- Ventre --
+    # le ventre
     (-30, -130), (-70, -130),
 
-    # -- Patte arrière --
+    # patte arrière
     (-90, -150), (-85, -200), (-95, -210), (-105, -210), (-100, -150), (-120, -100),
 
-    # -- Cuisse et Queue --
+    # la queue
     (-140, -60), (-160, -100), (-180, -150), (-170, -80), (-150, -40),
 
-    # -- Croupe et Dos --
+    # le dos
     (-130, -20), (-80, -30), (-40, -20),
 
-    # -- Encolure (Crinière) --
+    # l'encolure
     (-30, 30), (-20, 60),
 
-    # -- Oreilles et Front --
+    # les oreilles et la tete
     (-5, 105), (5, 75), (15, 80), (20, 95), (25, 70), (35, 50), (70, 15), (95, -5),
 
-    # -- Retour au museau pour fermer le dessin --
+    # je reviens au debut pour fermer le contour
     (100, -20)
 ]
 
-
-#lever du stylo dans la fenetre
+# je lève le stylo pour aller au premier point sans tracer de trait
 stylo.penup()
-
-# On va directement au premier point (le nez) sans faire de trait depuis le centre
 stylo.goto(cheval_complet[0][0], cheval_complet[0][1])
-#pose du stylo
 stylo.pendown()
 
-print("Tracé du cheval en cours...")
+print("dessin en cours...")
 
-for coord in cheval_complet:
-    # Déplacement vers le point (x, y)
-    stylo.goto(coord[0], coord[1])
-    # Dessin de l'étoile le point de la constellation
-    stylo.dot(5, "gold")
+# je parcours tous les points un par un
+for point in cheval_complet:
+    stylo.goto(point[0], point[1])
+    stylo.dot(5, "gold") # je dessine une petite etoile doree a chaque point
 
-# --- Fin
+# j'écris mon prénom à côté du cheval
+stylo.penup()
+stylo.goto(120, 60)
+stylo.color("pink")
+stylo.write("Rama 🌸❤️", font=("Arial", 18, "bold"))
+
 stylo.hideturtle()
 ecran.exitonclick()
